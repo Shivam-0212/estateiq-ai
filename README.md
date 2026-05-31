@@ -81,7 +81,7 @@ EstateIQ automates this entirely by combining a **predictive XGBoost model** (82
 
 <br>
 
-**🏠 Hero Landing Page**
+**🏠 Landing Page**
 <img src="assets/1-home-page.png" alt="EstateIQ Home Page" width="100%">
 
 <br>
