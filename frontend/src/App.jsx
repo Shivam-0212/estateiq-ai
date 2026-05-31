@@ -6,7 +6,7 @@ import {
   Cell, ResponsiveContainer, RadialBarChart, RadialBar
 } from "recharts";
 
-const API = "http://127.0.0.1:8000";
+const API = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 const USD_TO_INR = 84.5;
 
 const CITY_ZIP = {"Algona":[98001],"Auburn":[98001,98002,98092],"Beaux Arts Village":[98004],"Bellevue":[98004,98005,98006,98007,98008],"Black Diamond":[98010],"Bothell":[98011,98028],"Burien":[98146,98148,98166,98168],"Carnation":[98014],"Clyde Hill":[98004],"Covington":[98042],"Des Moines":[98148,98198],"Duvall":[98019],"Enumclaw":[98022],"Fall City":[98024],"Federal Way":[98001,98003,98023],"Inglewood-Finn Hill":[98034],"Issaquah":[98027,98029,98075],"Kenmore":[98028],"Kent":[98030,98031,98032,98042],"Kirkland":[98033,98034],"Lake Forest Park":[98155],"Maple Valley":[98038],"Medina":[98039],"Mercer Island":[98040],"Milton":[98354],"Newcastle":[98056,98059],"Normandy Park":[98166,98198],"North Bend":[98045],"Pacific":[98047],"Preston":[98050],"Ravensdale":[98051],"Redmond":[98052,98053,98074],"Renton":[98055,98056,98057,98058,98059],"Sammamish":[98074,98075],"SeaTac":[98168,98188,98198],"Seattle":[98102,98103,98105,98106,98107,98108,98109,98112,98115,98116,98117,98118,98119,98122,98125,98126,98133,98136,98144,98146,98148,98168,98177,98178,98199],"Shoreline":[98133,98155,98177],"Skykomish":[98288],"Snoqualmie":[98065],"Snoqualmie Pass":[98068],"Tukwila":[98168,98178,98188],"Vashon":[98070],"Woodinville":[98072,98077],"Yarrow Point":[98004]};
