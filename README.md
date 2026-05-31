@@ -15,8 +15,15 @@
 [![XGBoost](https://img.shields.io/badge/XGBoost-ML_Model-189AB4)](https://xgboost.readthedocs.io)
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://www.docker.com)
 [![Deployed on Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)](https://estateiq-ai.vercel.app)
+[![Backend on Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=white)](https://YOUR-APP.onrender.com)
 
 > Instantly evaluate any real estate deal — predict fair market value, grade investment potential (A–F), and get AI-generated insights in seconds.
+
+| | URL |
+|---|---|
+| 🌐 **Frontend** | [estateiq-ai.vercel.app](https://estateiq-ai.vercel.app) |
+| ⚙️ **Backend API** | [YOUR-APP.onrender.com](https://YOUR-APP.onrender.com) |
+| 📄 **Swagger Docs** | [YOUR-APP.onrender.com/docs](https://YOUR-APP.onrender.com/docs) |
 
 ### **[🔗 Live Demo](https://estateiq-ai.vercel.app)** &nbsp;·&nbsp; **[📖 Technical Docs](UI_UX_ANALYSIS.md)** &nbsp;·&nbsp; **[⭐ Star this repo](https://github.com/Shivam-0212/estateiq-ai)**
 
@@ -26,6 +33,7 @@
 
 ## 📋 Table of Contents
 
+- [Project Highlights](#-project-highlights)
 - [Overview](#-overview)
 - [Screenshots](#-screenshots)
 - [Key Features](#-key-features)
@@ -38,6 +46,16 @@
 - [Known Limitations](#-known-limitations)
 - [Future Roadmap](#-future-roadmap)
 - [License](#-license)
+
+---
+
+## 🏅 Project Highlights
+
+- ✅ Built a full-stack ML application using **React**, **FastAPI**, and **XGBoost**
+- 📊 Achieved **R² = 0.8244** on real estate price prediction (King County, WA)
+- 🤖 Integrated **Gemini AI** for contextual, property-specific natural language analysis
+- 🚀 Deployed frontend on **Vercel** and backend API on **Render**
+- 🐳 Containerized the full stack using **Docker** and **docker-compose**
 
 ---
 
@@ -104,20 +122,20 @@ EstateIQ automates this entirely by combining a **predictive XGBoost model** (82
 
 | Feature | Description |
 |---|---|
-| 🔮 **Instant Valuation** | XGBoost model predicts fair market value in under 10ms |
+| 🔮 **Instant Valuation** | XGBoost model returns real-time property valuations |
 | 🏆 **Investment Grading** | Holistic A–F score based on 6+ weighted factors |
 | 💰 **Financial Projections** | Rent estimates, mortgage amortization & Cash-on-Cash ROI |
 | 🤖 **AI Chat Advisor** | Gemini-powered chatbot with full property-specific context |
 | 📊 **Market Benchmarking** | Compares your property vs. ZIP code and city-level averages |
 | 💱 **USD ↔ INR Toggle** | Instant full-UI currency conversion at the click of a button |
 | 🐳 **Docker Support** | One-command full-stack deployment with `docker-compose up` |
-| ⚡ **Sub-10ms Inference** | All models pre-loaded at startup — zero file I/O per request |
+| ⚡ **Low-Latency Inference** | All models pre-loaded at startup — zero file I/O per request |
 
 ---
 
 ## 🗺️ Architecture
 
-EstateIQ uses a **decoupled Client-Server architecture** built for sub-millisecond inference. All heavy models and pre-computed JSON stats load once into memory at startup via FastAPI's `lifespan` context — eliminating file I/O on every request.
+EstateIQ uses a **decoupled Client-Server architecture** optimized for low-latency inference. All heavy models and pre-computed JSON stats load once into memory at startup via FastAPI's `lifespan` context — eliminating file I/O on every request.
 
 ```mermaid
 graph TD
@@ -173,12 +191,13 @@ graph TD
 | **Pickle (`.pkl`)** | Serialized model and encoder storage |
 | **JSON files** | Pre-computed city/ZIP market stats — no SQL database needed |
 | **Vercel** | Frontend CI/CD deployment |
+| **Render** | Backend API hosting |
 
 ---
 
 ## 📊 ML Model Performance
 
-Trained on a historical **King County, WA** real estate transaction dataset. The target variable (`price`) is right-skewed due to luxury outliers, so it is normalized with `np.log1p()` before training and reversed with `math.expm1()` at inference.
+Trained on the **[King County House Sales dataset](https://www.kaggle.com/datasets/harlfoxem/housesalesprediction)** (Kaggle). The target variable (`price`) is right-skewed due to luxury outliers, so it is normalized with `np.log1p()` before training and reversed with `math.expm1()` at inference.
 
 | Metric | Value | What it means |
 |---|---|---|
@@ -272,7 +291,7 @@ estateiq-ai/
 │   ├── city_stats.json             # Pre-computed city-level price averages
 │   ├── zip_stats.json              # Pre-computed ZIP-level price averages
 │   └── services/
-│       └── api_integrations.py     # Simulated Zillow, WalkScore, FRED & OpenAI APIs
+│       └── api_integrations.py     # Property data and AI service integration utilities
 │
 └── frontend/                       # React SPA
     ├── vite.config.js
