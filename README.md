@@ -357,7 +357,7 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for full details
 
 <div align="center">
 
-Made with ❤️ by **[Shivam](https://github.com/Shivam-0212)**
+Designed and developed by **[Shivam Rai](https://github.com/Shivam-0212)**
 
 <br>
 
