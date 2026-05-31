@@ -1,223 +1,346 @@
-# EstateIQ: AI-Powered Real Estate Investment Analyzer
+<div align="center">
 
-## 1. Project Overview
+<img src="assets/1-home-page.png" alt="EstateIQ — AI-Powered Real Estate Investment Analyzer" width="100%">
 
-**EstateIQ** is a comprehensive, end-to-end Machine Learning web application designed to help users evaluate real estate properties. 
+<br><br>
 
-**Purpose:** To provide instant, data-driven property valuations and generate comprehensive investment scorecards based on property characteristics and local market conditions.
-**Problem Solved:** Real estate investors and homebuyers often rely on slow, manual comparable analysis ("comps") or gut feeling to determine if a property is priced fairly. EstateIQ automates this process, providing instant valuations, ROI estimates, and risk analysis.
-**Target Users:** Real estate investors, potential homebuyers, wholesalers, and real estate agents looking for quick, quantitative deal analysis.
+# 🏛️ EstateIQ
 
----
+**AI-Powered Real Estate Investment Analyzer**
 
-## 2. Tech Stack Detection
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?logo=python&logoColor=white)](https://python.org)
+[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![XGBoost](https://img.shields.io/badge/XGBoost-ML_Model-189AB4)](https://xgboost.readthedocs.io)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://www.docker.com)
+[![Deployed on Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)](https://estateiq-ai.vercel.app)
 
-The project is built using a modern, decoupled architecture:
+> Instantly evaluate any real estate deal — predict fair market value, grade investment potential (A–F), and get AI-generated insights in seconds.
 
-### Frontend
-* **Framework:** **React** (bootstrapped with **Vite** for incredibly fast hot-module replacement and optimized builds).
-* **Styling:** **Vanilla CSS** (custom design system focused on high-performance, tailored aesthetics without utility-class bloat).
-* **HTTP Client:** **Axios** for seamless, promise-based REST API communication.
-* **Data Visualization:** **Recharts** for rendering responsive, interactive market comparison charts.
+### **[🔗 Live Demo](https://estateiq-ai.vercel.app)** &nbsp;·&nbsp; **[📖 Technical Docs](UI_UX_ANALYSIS.md)** &nbsp;·&nbsp; **[⭐ Star this repo](https://github.com/Shivam-0212/estateiq-ai)**
 
-### Backend
-* **Framework:** **FastAPI** (Python). Chosen for its extreme speed, asynchronous capabilities, and automatic interactive API documentation (Swagger UI).
-* **Machine Learning:** **XGBoost** (`XGBRegressor`). A state-of-the-art gradient boosting library, chosen because it consistently outperforms deep learning on structured, tabular data (like real estate features) and handles non-linear relationships gracefully.
-* **Data Processing:** **Pandas** and **NumPy** for data cleaning, aggregation, and mathematical transformations (e.g., logarithmic scaling).
-* **Preprocessing Pipeline:** **Scikit-Learn** (`LabelEncoder`, `train_test_split`, and metrics). 
-
-### Data Storage & Artifacts
-* **Serialization:** **Pickle (`.pkl`)** for storing trained models and encoders.
-* **In-Memory Configs:** **JSON**. Geographical aggregations (city/ZIP stats) are pre-computed and stored as JSON. This avoids the overhead of a SQL database, allowing the API to achieve sub-millisecond data retrieval.
+</div>
 
 ---
 
-## 3. Folder & Architecture Breakdown
+## 📋 Table of Contents
 
-```text
-ai-real-estate/
-├── backend/                  # Python/FastAPI Machine Learning Server
-│   ├── main.py               # The FastAPI application and inference engine
-│   ├── train.py              # The ML training pipeline and feature engineering script
-│   ├── test_split.py         # Utility for managing train/test dataset splits
-│   ├── data.csv              # The historical real estate dataset
-│   ├── model.pkl             # Serialized XGBoost Regressor model
-│   ├── label_encoder.pkl     # Encodes city strings to integer categories
-│   ├── zip_encoder.pkl       # Encodes ZIP codes to integer categories
-│   └── *.json                # Pre-computed market stats, metrics, and feature lists
-│
-└── frontend/                 # React SPA (Single Page Application)
-    ├── src/
-    │   ├── App.jsx           # Main application logic and multi-step form state
-    │   ├── main.jsx          # React entry point
-    │   ├── App.css           # Component-level styles
-    │   └── index.css         # Global variables and resets
-    ├── package.json          # Node dependencies
-    └── vite.config.js        # Vite bundler configuration
+- [Overview](#-overview)
+- [Screenshots](#-screenshots)
+- [Key Features](#-key-features)
+- [Architecture](#-architecture)
+- [Tech Stack](#-tech-stack)
+- [ML Model Performance](#-ml-model-performance)
+- [Getting Started](#-getting-started)
+- [Project Structure](#-project-structure)
+- [Deal Analysis Logic](#-deal-analysis-logic)
+- [Known Limitations](#-known-limitations)
+- [Future Roadmap](#-future-roadmap)
+- [License](#-license)
+
+---
+
+## 🎯 Overview
+
+**EstateIQ** is a full-stack ML web application that solves a real problem: real estate investors and homebuyers waste hours on manual comparable analysis (*"comps"*) or rely purely on gut feeling to decide if a deal is fair.
+
+EstateIQ automates this entirely by combining a **predictive XGBoost model** (82.4% R²) with a **deterministic expert scoring engine** to return:
+
+- 📈 **Predicted Fair Market Value** — adjusted for modern market appreciation
+- 🏆 **Investment Grade (A–F)** — weighted across condition, location, and deal value
+- 💰 **Financial Projections** — estimated rent, Cash-on-Cash ROI, and mortgage payments
+- 🤖 **AI Property Advisor** — Gemini-powered chatbot with property-specific context
+
+**Target Users:** Real estate investors, homebuyers, wholesalers, and agents who want quantitative deal analysis in seconds — not days.
+
+---
+
+## 📸 Screenshots
+
+<details open>
+<summary><strong>🖼️ View Full UI Gallery</strong></summary>
+
+<br>
+
+**🏠 Hero Landing Page**
+<img src="/1-home-page.png" alt="EstateIQ Home Page" width="100%">
+
+<br>
+
+**📍 Step 1 — Location Selection**
+<img src="assets/2-location-selection.png" alt="Location Selection" width="100%">
+
+<br>
+
+**📐 Step 2 — Property Specifications**
+<img src="assets/3-property-specifications.png" alt="Property Specifications" width="100%">
+
+<br>
+
+**🔧 Step 3 — Property Quality & Condition**
+<img src="assets/4-property-quality.png" alt="Property Quality" width="100%">
+
+<br>
+
+**💲 Step 4 — Deal Analysis Input**
+<img src="assets/5-deal-analysis.png" alt="Deal Analysis" width="100%">
+
+<br>
+
+**📊 Step 5 — Investment Dashboard**
+<img src="assets/6-investment-dashboard.png" alt="Investment Dashboard" width="100%">
+
+<br>
+
+**🤖 AI Property Advisor Chatbot**
+<img src="assets/7-ai-advisor-chatbot.png" alt="AI Advisor Chatbot" width="100%">
+
+</details>
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+|---|---|
+| 🔮 **Instant Valuation** | XGBoost model predicts fair market value in under 10ms |
+| 🏆 **Investment Grading** | Holistic A–F score based on 6+ weighted factors |
+| 💰 **Financial Projections** | Rent estimates, mortgage amortization & Cash-on-Cash ROI |
+| 🤖 **AI Chat Advisor** | Gemini-powered chatbot with full property-specific context |
+| 📊 **Market Benchmarking** | Compares your property vs. ZIP code and city-level averages |
+| 💱 **USD ↔ INR Toggle** | Instant full-UI currency conversion at the click of a button |
+| 🐳 **Docker Support** | One-command full-stack deployment with `docker-compose up` |
+| ⚡ **Sub-10ms Inference** | All models pre-loaded at startup — zero file I/O per request |
+
+---
+
+## 🗺️ Architecture
+
+EstateIQ uses a **decoupled Client-Server architecture** built for sub-millisecond inference. All heavy models and pre-computed JSON stats load once into memory at startup via FastAPI's `lifespan` context — eliminating file I/O on every request.
+
+```mermaid
+graph TD
+    A[⚛️ React SPA] -- 1. POST raw specs to /analyze --> B(🚀 FastAPI Server)
+    B -- 2. Reads pre-cached memory --> C[📦 Label Encoders & JSON Stats]
+    B -- 3. Runs 37-dimension feature engineering --> D[🧠 XGBoost Model]
+    D -- 4. Returns logarithmic price --> B
+    B -- 5. Applies 1.95x appreciation multiplier --> B
+    B -- 6. Heuristic scoring + mortgage calculation --> B
+    B -- 7. Optional: property context injection --> E[🤖 Gemini API]
+    B -- 8. Returns unified JSON report --> A
 ```
 
-### Architectural Flow
-The system uses a **Client-Server Architecture**. The React frontend serves as the presentation layer, maintaining user state. It communicates via HTTP POST to the FastAPI backend, which acts as the application and logic layer. The backend loads the pre-trained XGBoost model and pre-computed statistical JSON files into memory at startup (via FastAPI's `lifespan`), ensuring highly performant, stateless predictions.
+**Request flow inside `/analyze`:**
+1. **Validate** → Pydantic strictly types all incoming property fields
+2. **Engineer** → Reconstructs the 37-feature vector used during training
+3. **Encode** → Converts city/ZIP strings to integers via `.pkl` label encoders
+4. **Predict** → XGBoost outputs the log-price; `math.expm1()` reverses it
+5. **Adjust** → Applies a `1.95×` multiplier for post-2014 market appreciation
+6. **Score** → Expert system calculates investment grade, ROI, and mortgage
+7. **Narrate** → Gemini API compiles an AI insight report
+8. **Return** → Full JSON response back to the React dashboard
 
 ---
 
-## 4. Backend Deep Explanation
+## 🛠️ Tech Stack
 
-The backend (`main.py`) acts as the brain of the application. 
+### Frontend
 
-### API Endpoints
-* `GET /cities` & `GET /city-zips/{city_name}`: Lookups for the frontend dropdowns.
-* `GET /market-overview` & `/city-stats/{city_name}`: Exposes pre-computed market data.
-* `POST /analyze`: The core inference endpoint. Accepts a `PropertyInput` payload and returns a comprehensive JSON analysis report.
+| Technology | Purpose |
+|---|---|
+| **React 18 + Vite** | SPA framework with HMR and optimized production builds |
+| **Vanilla CSS** | Custom dark-mode design system — no utility-class overhead |
+| **Axios** | Promise-based REST API communication |
+| **Recharts** | Responsive, interactive market comparison bar charts |
+| **React-Markdown** | Renders AI advisor responses with full Markdown formatting |
 
-### Request Flow
-1. **Input Reception:** The frontend sends property details (beds, baths, sqft, city, etc.) to `/analyze`.
-2. **Validation:** Pydantic strictly types and validates the incoming data.
-3. **Feature Engineering:** The backend precisely reconstructs the features used during training. It calculates `house_age`, logarithmic transforms (`sqft_living_log`), interaction terms (`sqft_x_condition`), and geographical averages by querying the loaded JSON dictionaries.
-4. **Encoding:** Text data (City, ZIP) is safely converted to integers using the loaded Scikit-Learn `.pkl` encoders.
-5. **Prediction:** The 37-dimensional feature array is passed to the XGBoost model. The model predicts the *logarithm* of the price.
-6. **Post-Processing:** The `math.expm1()` function reverses the logarithm to output the final raw dollar value.
-7. **Rule-Based Scoring:** The predicted price is passed into the `compute_investment_score()` function alongside market baselines to generate an investment grade.
-8. **Response:** A massive JSON object containing the prediction, insights, and financial projections is returned to the frontend.
+### Backend
 
----
+| Technology | Purpose |
+|---|---|
+| **FastAPI (Python)** | Async REST API with auto-generated Swagger UI at `/docs` |
+| **XGBoost (`XGBRegressor`)** | Core gradient-boosted ML regression model |
+| **Scikit-Learn** | Label encoding and train/test split pipeline |
+| **Pandas / NumPy** | Data processing, aggregation & log transforms |
+| **Gemini API** | Generative AI for property insights and the chatbot advisor |
 
-## 5. Machine Learning Pipeline
+### DevOps & Data
 
-The training logic is housed in `train.py`.
-
-* **Dataset:** Real estate data filtered to remove invalid properties (price <= 0). The target variable is `price`.
-* **Preprocessing:** The target variable is right-skewed (a few very expensive homes pull the average up). To normalize this, the pipeline applies `np.log1p()` to the price before training, making the model more accurate across standard homes.
-* **Feature Engineering:** Creates 37 distinct features. Notable engineered features include:
-  * `years_since_reno`: Accounts for property aging vs. recent updates.
-  * *Interaction Terms*: `sqft_x_condition`, `waterfront_x_view` (helps the model understand that a large house in poor condition is valued differently than a small house in poor condition).
-  * *Target Encoding approximations*: Averages for `zip_avg_price` and `city_avg_ppsf` are mapped back to individual rows.
-* **Model:** `XGBRegressor` with heavily tuned hyperparameters (e.g., `learning_rate=0.04`, `max_depth=6`, `subsample=0.85`) to prevent overfitting.
-* **Evaluation Metrics:**
-  * **R² (0.8244):** The model successfully explains ~82.4% of the variance in housing prices. A very strong score for tabular real estate data.
-  * **MAPE (16.1%):** On average, the model's price prediction is within 16.1% of the actual sold price.
-  * **MAE ($82,906):** The absolute dollar error on average.
-  * **RMSE ($149,789):** Punishes large outlier errors, hence it is higher than MAE.
+| Technology | Purpose |
+|---|---|
+| **Docker + docker-compose** | Multi-container orchestration via bridge network |
+| **Pickle (`.pkl`)** | Serialized model and encoder storage |
+| **JSON files** | Pre-computed city/ZIP market stats — no SQL database needed |
+| **Vercel** | Frontend CI/CD deployment |
 
 ---
 
-## 6. Deal Analysis Logic
+## 📊 ML Model Performance
 
-While XGBoost predicts the *Fair Market Value*, the `compute_investment_score` function acts as a heuristic expert system to evaluate the deal:
+Trained on a historical **King County, WA** real estate transaction dataset. The target variable (`price`) is right-skewed due to luxury outliers, so it is normalized with `np.log1p()` before training and reversed with `math.expm1()` at inference.
 
-1. **Valuation (Undervalued vs. Overvalued):** If the User inputs an *Asking Price*, the system subtracts it from the *Predicted Price*. If the prediction is >$5,000 higher than the asking price, it is labeled **Undervalued** (a good deal).
-2. **ROI & Rent:** Calculates monthly rent using a flat 0.6% rule (`RENT_YIELD = 0.006`). Annual ROI is derived from this estimated gross rental income.
-3. **Investment Score (0 to 100):**
-   * Starts at a baseline of 50.
-   * **Location/Feature Multipliers:** +12 for waterfront, up to +10 for views.
-   * **Condition:** +10 for excellent condition; severe penalties (-14) for poor condition due to expected CAPEX (capital expenditures).
-   * **Value Comparisons:** Heavily rewards properties where the calculated Price per Square Foot (PPSF) is significantly lower than the ZIP code average.
-4. **Grading Tier:** The numerical score dictates the letter grade: A (>=80), B (>=65), C (>=50), D (>=35), F (<35).
+| Metric | Value | What it means |
+|---|---|---|
+| **R² Score** | `0.8244` | Explains **82.4%** of all price variance — strong for tabular RE data |
+| **MAPE** | `16.1%` | Average prediction within **16.1%** of actual sale price |
+| **MAE** | `$82,906` | Average absolute dollar error |
+| **RMSE** | `$149,789` | Higher than MAE due to heavy outlier penalty |
 
----
+**Model Hyperparameters:** `n_estimators=400` · `learning_rate=0.04` · `max_depth=6` · `subsample=0.85`
 
-## 7. Frontend Explanation
-
-The frontend is a dynamic, state-driven React application.
-
-* **App.jsx:** Manages a sophisticated multi-step wizard. Instead of overwhelming the user with 15+ input fields at once, the state machine divides them logically.
-* **State Management:** React's `useState` hooks accumulate the `formData` object as the user progresses through the steps.
-* **Dynamic Fetching:** Upon selecting a City in Step 1, a `useEffect` hook triggers an API call to fetch the corresponding ZIP codes for that specific city, ensuring data consistency.
-* **Result Rendering:** Upon submission, the app transitions to the final step, rendering a robust dashboard utilizing conditional CSS classes (e.g., green for Grade A, red for Grade F) and Recharts for visual market comparisons.
+**Notable engineered features (37 total):**
+- `house_age`, `years_since_reno` — temporal decay modeling
+- `sqft_x_condition`, `waterfront_x_view` — interaction terms (large + poor ≠ large + excellent)
+- `bath_per_bed`, `sqft_ratio` — luxury and lot-use proportions
+- `zip_avg_price`, `city_avg_ppsf` — pre-computed geographical target encoding (no live DB queries)
 
 ---
 
-## 8. UI/UX Flow Explanation
-
-**The User Journey:**
-1. **Step 1: Location:** User selects City and ZIP code.
-2. **Step 2: Property Size:** User enters raw specs (Beds, Baths, Sqft Living, Sqft Lot, Floors).
-3. **Step 3: Quality & Condition:** User inputs Year Built, Renovation status, Condition (1-5), and View ratings.
-4. **Step 4: The Deal:** User inputs the Asking Price (optional).
-5. **Step 5: Results Dashboard:** 
-   * Top banner displays the **Predicted Price** and **Deal Status**.
-   * Middle section provides the **Investment Grade**, ROI metrics, and a list of AI-generated Insights (textual explanations of why the score was given).
-   * Bottom section visualizes the property's price-per-square-foot against the city and ZIP averages.
-
----
-
-## 9. Results Interpretation
-
-* **Predicted Price:** The AI's estimation of what the house *should* sell for, ignoring the seller's asking price.
-* **Deal Status:** A quick binary check. "Undervalued" means instant equity for the buyer.
-* **Investment Grade (A-F):** A holistic score that combines price, condition, age, and location. An "A" means it is an excellent long-term hold; an "F" means high risk of money loss.
-* **ROI (Return on Investment):** Estimated yearly gross return if rented out.
-* **Market Comparison:** Helps users realize if they are buying the most expensive house on the block (usually a bad idea) or the cheapest (usually a good idea for forced appreciation).
-
----
-
-## 10. Strengths of the Project
-
-* **Real-World Application:** Solves a highly tangible, lucrative problem (real estate valuation).
-* **Hybrid Architecture:** Beautifully marries probabilistic Machine Learning (XGBoost) with deterministic Expert System rules (Investment Scoring logic).
-* **High Performance:** JSON-based local aggregations and FastAPI make inferences virtually instantaneous.
-* **Robust Feature Engineering:** Doesn't just use raw data; calculates ratios and interaction features that mimic how human appraisers think (e.g., `sqft_x_condition`, `bath_per_bed`).
-
----
-
-## 11. Limitations
-
-* **Temporal Data Decay:** The dataset is hardcoded to a `SALE_YEAR = 2014`. Real estate prices have shifted drastically since then; the model predicts 2014 values, not current market values.
-* **Geographical Bias:** The model is trained on a localized dataset (Washington state / King County based on the `WA` prefix stripping). It cannot accurately predict properties in Florida or Texas.
-* **Static Rent Yield:** The 0.6% rent rule is a massive oversimplification. Real rent yields vary wildly by neighborhood, property class, and current interest rates.
-* **Lack of Images/NLP:** It evaluates tabular data but cannot parse MLS descriptions or assess property photos for modern finishes.
-
----
-
-## 12. Future Improvements
-
-* **Live Data Integration:** Hook up to external APIs (like Zillow API or MLS feeds) to pull live comps and current market trends, enabling real-time retraining.
-* **Advanced ML:** Implement an ensemble model (XGBoost + LightGBM + CatBoost) or use deep learning for computer vision on property photos.
-* **Geospatial Features:** Integrate Google Maps/Mapbox APIs to calculate distance to downtown, schools, and transit—critical features for real estate valuation.
-* **Cloud Deployment:** Containerize the application using Docker and deploy via AWS ECS or Google Cloud Run for scalability.
-* **Authentication & Saving:** Add user accounts (JWT / OAuth) so investors can save deals and track portfolio growth.
-
----
-
-## 13. How to Run the Project
+## 🚀 Getting Started
 
 ### Prerequisites
-* Python 3.9+
-* Node.js 18+
 
-### Step 1: Backend Setup
-1. Open a terminal and navigate to the backend directory:
-   ```bash
-   cd ai-real-estate/backend
-   ```
-2. Create and activate a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-3. Install required dependencies:
-   ```bash
-   pip install fastapi uvicorn pandas scikit-learn xgboost pydantic
-   ```
-4. Run the FastAPI server:
-   ```bash
-   uvicorn main:app --reload
-   ```
-   *The backend will start at `http://127.0.0.1:8000`*
+- Python `3.9+`
+- Node.js `18+`
+- Docker & Docker Compose *(optional, for Option B)*
 
-### Step 2: Frontend Setup
-1. Open a new terminal and navigate to the frontend directory:
-   ```bash
-   cd ai-real-estate/frontend
-   ```
-2. Install Node dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the Vite development server:
-   ```bash
-   npm run dev
-   ```
-   *The frontend will start at `http://localhost:5173` (or the port specified by Vite).*
+---
 
-**You're all set!** Open the frontend URL in your browser and start analyzing deals.
+### Option A — Manual Setup
+
+**1. Start the FastAPI Backend**
+
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate      # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+
+> ✅ API live at `http://127.0.0.1:8000`
+> 📄 Swagger docs at `http://127.0.0.1:8000/docs`
+
+**2. Start the React Frontend**
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+> ✅ App live at `http://localhost:5173`
+
+---
+
+### Option B — Docker (Recommended)
+
+```bash
+# From the project root — boots everything in one command
+docker-compose up --build
+```
+
+| Service | URL |
+|---|---|
+| React Frontend | `http://localhost:80` |
+| FastAPI Backend | `http://localhost:8000` |
+| Swagger UI | `http://localhost:8000/docs` |
+
+> 💡 Bind your `GEMINI_API_KEY` in `.env` before running to enable the AI advisor chatbot.
+
+---
+
+## 📁 Project Structure
+
+```
+estateiq-ai/
+├── docker-compose.yml              # Orchestrates multi-container environment
+├── UI_UX_ANALYSIS.md               # Deep-dive architectural documentation
+├── assets/                         # Screenshots used in this README
+│
+├── backend/                        # Python / FastAPI ML inference server
+│   ├── main.py                     # API gateway, scoring engine & chatbot endpoint
+│   ├── train.py                    # Feature engineering + XGBoost training pipeline
+│   ├── test_split.py               # Dataset split utility
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   ├── data.csv                    # King County, WA historical transactions
+│   ├── model.pkl                   # Serialized XGBoost model
+│   ├── label_encoder.pkl           # City name → integer encoder
+│   ├── zip_encoder.pkl             # ZIP code → integer encoder
+│   ├── city_stats.json             # Pre-computed city-level price averages
+│   ├── zip_stats.json              # Pre-computed ZIP-level price averages
+│   └── services/
+│       └── api_integrations.py     # Simulated Zillow, WalkScore, FRED & OpenAI APIs
+│
+└── frontend/                       # React SPA
+    ├── vite.config.js
+    ├── package.json
+    └── src/
+        ├── App.jsx                 # State machine: home → wizard → results dashboard
+        ├── App.css                 # Component-level styles
+        └── index.css              # Global CSS variables, typography & resets
+```
+
+---
+
+## 🏆 Deal Analysis Logic
+
+The `compute_investment_score()` function acts as a **heuristic expert system** layered on top of the ML prediction. It grades the *deal*, not just the *property*.
+
+| Factor | Score Impact |
+|---|---|
+| Baseline | `50 / 100` |
+| Waterfront property | `+12` |
+| View rating (max 4) | up to `+10` |
+| Excellent condition (5/5) | `+10` |
+| Poor condition — CAPEX risk | `−14` |
+| PPSF significantly below ZIP average | up to `+15` |
+| Property undervalued vs. asking price | `+10` |
+
+**Grade Scale:** &nbsp; `A ≥ 80` &nbsp;·&nbsp; `B ≥ 65` &nbsp;·&nbsp; `C ≥ 50` &nbsp;·&nbsp; `D ≥ 35` &nbsp;·&nbsp; `F < 35`
+
+**Undervalued check:** If the model's predicted price exceeds the user's asking price by more than `$5,000`, the deal is flagged as **Undervalued** — representing instant equity for the buyer.
+
+---
+
+## ⚠️ Known Limitations
+
+| Limitation | Details |
+|---|---|
+| 📅 **Temporal Drift** | Dataset dates to 2014; a fixed `1.95×` multiplier approximates modern values but isn't a live feed |
+| 🗺️ **Geographic Bias** | Trained exclusively on King County, WA — predictions for other states will be unreliable |
+| 💹 **Static Rent Yield** | Uses a flat `0.6%` gross yield rule; real yields vary by neighborhood, class, and interest rates |
+| 📷 **No Visual Analysis** | Cannot assess property photos or parse MLS text descriptions for quality signals |
+
+---
+
+## 🔮 Future Roadmap
+
+- [ ] **Live Data Integration** — Hook up Zillow API / MLS feeds for real-time comps and retraining
+- [ ] **Ensemble Modeling** — Stack XGBoost + LightGBM + CatBoost for lower MAPE
+- [ ] **Computer Vision** — Score property photos with a CNN to catch finishes and condition
+- [ ] **Geospatial Features** — Distance to transit, schools & downtown via Google Maps API
+- [ ] **User Accounts** — JWT/OAuth authentication with saved deal history and portfolio tracking
+- [ ] **Cloud Deployment** — AWS ECS or Google Cloud Run with a full CI/CD pipeline
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for full details.
+
+---
+
+<div align="center">
+
+Made with ❤️ by **[Shivam](https://github.com/Shivam-0212)**
+
+<br>
+
+[![Live Demo](https://img.shields.io/badge/🔗_Live_Demo-estateiq--ai.vercel.app-000000?style=for-the-badge)](https://estateiq-ai.vercel.app)
+&nbsp;
+[![GitHub](https://img.shields.io/badge/⭐_Star_on_GitHub-Shivam--0212%2Festateiq--ai-24292e?style=for-the-badge&logo=github)](https://github.com/Shivam-0212/estateiq-ai)
+
+</div>
