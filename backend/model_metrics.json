@@ -1,0 +1,1 @@
+{"mae": 82906.99, "rmse": 149789.68, "r2": 0.8244, "mape": 16.1, "train_samples": 3640, "test_samples": 911, "total_features": 37, "log_transformed": true}

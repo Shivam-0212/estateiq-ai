@@ -1,0 +1,54 @@
+# Dependency Directories
+node_modules/
+jspm_packages/
+web_modules/
+
+# Production / Builds
+dist/
+dist-ssr/
+build/
+out/
+.next/
+
+# Python Virtual Environments & Packages
+backend/venv/
+venv/
+.venv/
+env/
+ENV/
+pyvenv.cfg
+.Python
+backend/__pycache__/
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints
+
+# Environment Variables & Private Keys (CRITICAL!)
+.env
+.env*.local
+backend/.env
+frontend/.env
+*.pem
+*.key
+
+# System / OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editors & IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.project
+.classpath
+.settings/
