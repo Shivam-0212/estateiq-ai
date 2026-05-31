@@ -15,7 +15,8 @@
 [![XGBoost](https://img.shields.io/badge/XGBoost-ML_Model-189AB4)](https://xgboost.readthedocs.io)
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://www.docker.com)
 [![Deployed on Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)](https://estateiq-ai.vercel.app)
-[![Backend on Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=white)](https://YOUR-APP.onrender.com)
+[![Backend on Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render&logoColor=white)](https://estateiq-backend-gs4z.onrender.com)
+[![Swagger Docs](https://img.shields.io/badge/API-Docs-85EA2D?logo=swagger&logoColor=black)](https://estateiq-backend-gs4z.onrender.com/docs)
 
 > Instantly evaluate any real estate deal — predict fair market value, grade investment potential (A–F), and get AI-generated insights in seconds.
 
