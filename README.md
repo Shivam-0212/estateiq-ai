@@ -19,11 +19,13 @@
 
 > Instantly evaluate any real estate deal — predict fair market value, grade investment potential (A–F), and get AI-generated insights in seconds.
 
-| | URL |
-|---|---|
-| 🌐 **Frontend** | [estateiq-ai.vercel.app](https://estateiq-ai.vercel.app) |
-| ⚙️ **Backend API** | [YOUR-APP.onrender.com](https://YOUR-APP.onrender.com) |
-| 📄 **Swagger Docs** | [YOUR-APP.onrender.com/docs](https://YOUR-APP.onrender.com/docs) |
+### 🌐 Live Deployment
+
+| Service | Link |
+|----------|----------|
+| 🌐 Frontend | [estateiq-ai.vercel.app](https://estateiq-ai.vercel.app) |
+| ⚙️ Backend API | [estateiq-backend-gs4z.onrender.com](https://estateiq-backend-gs4z.onrender.com) |
+| 📄 Swagger Docs | [Open API Documentation](https://estateiq-backend-gs4z.onrender.com/docs) |
 
 ### **[🔗 Live Demo](https://estateiq-ai.vercel.app)** &nbsp;·&nbsp; **[📖 Technical Docs](UI_UX_ANALYSIS.md)** &nbsp;·&nbsp; **[⭐ Star this repo](https://github.com/Shivam-0212/estateiq-ai)**
 
