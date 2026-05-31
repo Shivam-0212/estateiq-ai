@@ -64,12 +64,12 @@ EstateIQ automates this entirely by combining a **predictive XGBoost model** (82
 <br>
 
 **🏠 Hero Landing Page**
-<img src="/1-home-page.png" alt="EstateIQ Home Page" width="100%">
+<img src="assets/1-home-page.png" alt="EstateIQ Home Page" width="100%">
 
 <br>
 
 **📍 Step 1 — Location Selection**
-<img src="assets/2-location-selection.png" alt="Location Selection" width="100%">
+<img src="assets/2-%20location-selection.png" alt="Location Selection" width="100%">
 
 <br>
 
